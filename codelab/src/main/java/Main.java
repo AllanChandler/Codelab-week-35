@@ -1,5 +1,8 @@
+import daos.CourseDAO;
 import daos.PersonDAO;
 import daos.StudentDAO;
+
+import entities.Course;
 import entities.Person;
 import entities.Student;
 
@@ -8,13 +11,13 @@ import java.time.LocalDate;
 public class Main {
 
     public static void main(String[] args) {
-       /* PersonDAO personDAO = new PersonDAO();
+        PersonDAO personDAO = new PersonDAO();
         personDAO.createPerson(
                 Person.builder()
                         .name("Hans")
                         .age(36)
                         .build()
-        );*/
+        );
 
         //instance of StudentDAO
         StudentDAO studentDAO = new StudentDAO();
@@ -48,6 +51,21 @@ public class Main {
                                 .email("someemail@gmail.com")
                                 .build()
                 );*/
+
+        // create course
+        CourseDAO courseDAO = new CourseDAO();
+        Course course = Course.builder()
+                .courseName("Introduktion til Programmering")
+                .teacher("Dr. Smith")
+                .semester("Efterår 2024")
+                .classroom("Rum 101")
+                .time("MWF 10:00-11:00")
+                .build();
+        courseDAO.createCourse(course);
+
+        // update course
+        course.setTeacher("Dr. Johnson");
+        courseDAO.updateCourse(course);
 
 
     }
