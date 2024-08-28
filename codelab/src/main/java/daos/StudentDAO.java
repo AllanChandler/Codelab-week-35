@@ -29,4 +29,12 @@ public class StudentDAO {
            return em.find(Student.class, id);
         }
     }
+
+    public void deleteStudent(Student student) {
+        try (EntityManager em = emf.createEntityManager()) {
+            em.getTransaction().begin();
+            em.remove(student);
+            em.getTransaction().commit();
+        }
+    }
 }

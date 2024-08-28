@@ -12,6 +12,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
+        /*
         PersonDAO personDAO = new PersonDAO();
         personDAO.createPerson(
                 Person.builder()
@@ -19,6 +20,7 @@ public class Main {
                         .age(36)
                         .build()
         );
+        */
 
         //instance of StudentDAO
         StudentDAO studentDAO = new StudentDAO();
@@ -36,7 +38,7 @@ public class Main {
                         .build()
         );
 
-        Student student = studentDAO.getById(2);
+        Student student = studentDAO.getById(1);
 
         student.setName("Karen Kjeldsen");
         student.setAddress("Hovedgaden 12");
@@ -44,14 +46,19 @@ public class Main {
         studentDAO.updateStudentInfo(student);
 
         //To update all info use this method structure
-/*           userDAO.update(
+        /*
+        userDAO.update(
                         User.builder()
                                 .id(1)
                                 .username("user2")
                                 .password("password123")
                                 .email("someemail@gmail.com")
                                 .build()
-                );*/
+                );
+        */
+
+        //Delete a student
+        studentDAO.deleteStudent(student);
 
         // create course
         CourseDAO courseDAO = new CourseDAO();
