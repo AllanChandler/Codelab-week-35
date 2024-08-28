@@ -16,4 +16,12 @@ public class CourseDAO {
         }
     }
 
+    public void updateCourse(Course course) {
+        try (EntityManager em = emf.createEntityManager()) {
+            em.getTransaction().begin();
+            em.merge(course);
+            em.getTransaction().commit();
+        }
+    }
+
 }
