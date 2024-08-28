@@ -4,6 +4,7 @@ import entities.Person;
 import entities.Student;
 
 import java.time.LocalDate;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -32,7 +33,7 @@ public class Main {
                         .build()
         );
 
-        Student student = studentDAO.getById(2);
+        Student student = studentDAO.getById(1);
 
         student.setName("Karen Kjeldsen");
         student.setAddress("Hovedgaden 12");
@@ -49,6 +50,8 @@ public class Main {
                                 .build()
                 );*/
 
+        //List all students
+        studentDAO.getAllStudents().forEach(System.out::println);
 
     }
 }
