@@ -1,16 +1,15 @@
 import daos.CourseDAO;
 import daos.PersonDAO;
+import daos.StudentDAO;
+
 import entities.Course;
 import entities.Person;
+import entities.Student;
 
-import daos.CourseDAO;
-import daos.PersonDAO;
-import entities.Course;
-import entities.Person;
-
-import java.util.List;
+import java.time.LocalDate;
 
 public class Main {
+
     public static void main(String[] args) {
         PersonDAO personDAO = new PersonDAO();
         personDAO.createPerson(
@@ -20,10 +19,41 @@ public class Main {
                         .build()
         );
 
+        //instance of StudentDAO
+        StudentDAO studentDAO = new StudentDAO();
+
+        studentDAO.createStudent(
+                Student.builder()
+                        .name("Julie Petersen")
+                        .phoneNumber("+4524366789")
+                        .email("jp@gmail.com")
+                        .address("Firskovvej 5")
+                        .status("student")
+                        .birthDate(LocalDate.of(1995,3,20))
+                        .enrollmentDate(LocalDate.of(2023,9,1))
+                        //Add courses here
+                        .build()
+        );
+
+        Student student = studentDAO.getById(2);
+
+        student.setName("Karen Kjeldsen");
+        student.setAddress("Hovedgaden 12");
+        student.setEmail("kk@gmail.com");
+        studentDAO.updateStudentInfo(student);
+
+        //To update all info use this method structure
+/*           userDAO.update(
+                        User.builder()
+                                .id(1)
+                                .username("user2")
+                                .password("password123")
+                                .email("someemail@gmail.com")
+                                .build()
+                );*/
+
+        // create course
         CourseDAO courseDAO = new CourseDAO();
-
-        // Create course
-
         Course course = Course.builder()
                 .courseName("Introduktion til Programmering")
                 .teacher("Dr. Smith")
@@ -33,34 +63,10 @@ public class Main {
                 .build();
         courseDAO.createCourse(course);
 
-
-        //Delete course
-
-        // få id da det skal bruges for at kunne delete course
-        int courseId = course.getId();
-
-        // Update the course details
+        // update course
         course.setTeacher("Dr. Johnson");
         courseDAO.updateCourse(course);
 
-        // Delete the course with the given ID
-        courseDAO.deleteCourse(courseId);
-
-        System.out.println("\n"+"Course with ID " + courseId + " deleted from the database.");
-
-
-
-        //List all courses
-        List<Course> courses = courseDAO.getAllCourses();
-
-        if (courses.isEmpty()) {
-            System.out.println("No courses found.");
-        } else {
-            for (Course course2 : courses) {
-                System.out.println(course2);
-            }
-        }
 
     }
 }
-
