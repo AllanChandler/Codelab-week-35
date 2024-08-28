@@ -8,6 +8,8 @@ import daos.PersonDAO;
 import entities.Course;
 import entities.Person;
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         PersonDAO personDAO = new PersonDAO();
@@ -20,7 +22,8 @@ public class Main {
 
         CourseDAO courseDAO = new CourseDAO();
 
-        // Create and persist a new course
+        // Create course
+
         Course course = Course.builder()
                 .courseName("Introduktion til Programmering")
                 .teacher("Dr. Smith")
@@ -29,6 +32,9 @@ public class Main {
                 .time("MWF 10:00-11:00")
                 .build();
         courseDAO.createCourse(course);
+
+
+        //Delete course
 
         // få id da det skal bruges for at kunne delete course
         int courseId = course.getId();
@@ -41,6 +47,20 @@ public class Main {
         courseDAO.deleteCourse(courseId);
 
         System.out.println("\n"+"Course with ID " + courseId + " deleted from the database.");
+
+
+
+        //List all courses
+        List<Course> courses = courseDAO.getAllCourses();
+
+        if (courses.isEmpty()) {
+            System.out.println("No courses found.");
+        } else {
+            for (Course course2 : courses) {
+                System.out.println(course2);
+            }
+        }
+
     }
 }
 
