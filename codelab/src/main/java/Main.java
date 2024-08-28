@@ -16,7 +16,9 @@ public class Main {
                         .build()
         );*/
 
+        //instance of StudentDAO
         StudentDAO studentDAO = new StudentDAO();
+
         studentDAO.createStudent(
                 Student.builder()
                         .name("Julie Petersen")
@@ -29,6 +31,23 @@ public class Main {
                         //Add courses here
                         .build()
         );
+
+        Student student = studentDAO.getById(2);
+
+        student.setName("Karen Kjeldsen");
+        student.setAddress("Hovedgaden 12");
+        student.setEmail("kk@gmail.com");
+        studentDAO.updateStudentInfo(student);
+
+        //To update all info use this method structure
+/*           userDAO.update(
+                        User.builder()
+                                .id(1)
+                                .username("user2")
+                                .password("password123")
+                                .email("someemail@gmail.com")
+                                .build()
+                );*/
 
 
     }
