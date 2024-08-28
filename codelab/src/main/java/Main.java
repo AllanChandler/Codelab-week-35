@@ -7,6 +7,7 @@ import entities.Person;
 import entities.Student;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Main {
 
@@ -29,8 +30,8 @@ public class Main {
                         .email("jp@gmail.com")
                         .address("Firskovvej 5")
                         .status("student")
-                        .birthDate(LocalDate.of(1995,3,20))
-                        .enrollmentDate(LocalDate.of(2023,9,1))
+                        .birthDate(LocalDate.of(1995, 3, 20))
+                        .enrollmentDate(LocalDate.of(2023, 9, 1))
                         //Add courses here
                         .build()
         );
@@ -67,6 +68,16 @@ public class Main {
         course.setTeacher("Dr. Johnson");
         courseDAO.updateCourse(course);
 
+        //List all courses
+        List<Course> courses = courseDAO.getAllCourses();
+
+        if (courses.isEmpty()) {
+            System.out.println("No courses found.");
+        } else {
+            for (Course course2 : courses) {
+                System.out.println(course2);
+            }
+        }
 
     }
 }
