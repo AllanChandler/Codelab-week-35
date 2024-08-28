@@ -1,6 +1,7 @@
-package dk.favrholdt.persistence;
+package persistence;
 
-import dk.favrholdt.entities.User;
+import entities.Person;
+import entities.Student;
 import jakarta.persistence.EntityManagerFactory;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -33,7 +34,8 @@ public class HibernateConfig {
     }
     // TODO: IMPORTANT: Add Entity classes here for them to be registered with Hibernate
     private static void getAnnotationConfiguration(Configuration configuration) {
-        // configuration.addAnnotatedClass(User.class);
+        configuration.addAnnotatedClass(Person.class);
+        configuration.addAnnotatedClass(Student.class);
     }
 
     private static EntityManagerFactory createEMF(boolean forTest) {
@@ -66,7 +68,7 @@ public class HibernateConfig {
 
 
     private static String getDBName() {
-        return "jpadaydemo";
+        return "jpademo";
     }
 
     private static Properties setBaseProperties(Properties props){
@@ -89,7 +91,8 @@ public class HibernateConfig {
     private static Properties setDevProperties(Properties props){
         props.put("hibernate.connection.url", "jdbc:postgresql://localhost:5432/"+ getDBName());
         props.put("hibernate.connection.username", "postgres"); //change to your username
-        props.put("hibernate.connection.password", "postgres"); //change to your password
+        //props.put("hibernate.connection.password", "postgres"); //change to your password
+        props.put("hibernate.connection.password", "cc23"); //FELICIA PASSWORD
         return props;
     }
     private static Properties setTestProperties(Properties props){
