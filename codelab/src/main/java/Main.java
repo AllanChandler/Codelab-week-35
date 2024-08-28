@@ -8,19 +8,18 @@ import entities.Student;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Main {
 
     public static void main(String[] args) {
-        /*
-        PersonDAO personDAO = new PersonDAO();
+       /* PersonDAO personDAO = new PersonDAO();
         personDAO.createPerson(
                 Person.builder()
                         .name("Hans")
                         .age(36)
                         .build()
-        );
-        */
+        );*/
 
         //instance of StudentDAO
         StudentDAO studentDAO = new StudentDAO();
@@ -32,8 +31,8 @@ public class Main {
                         .email("jp@gmail.com")
                         .address("Firskovvej 5")
                         .status("student")
-                        .birthDate(LocalDate.of(1995, 3, 20))
-                        .enrollmentDate(LocalDate.of(2023, 9, 1))
+                        .birthDate(LocalDate.of(1995,3,20))
+                        .enrollmentDate(LocalDate.of(2023,9,1))
                         //Add courses here
                         .build()
         );
@@ -46,8 +45,7 @@ public class Main {
         studentDAO.updateStudentInfo(student);
 
         //To update all info use this method structure
-        /*
-        userDAO.update(
+/*           userDAO.update(
                         User.builder()
                                 .id(1)
                                 .username("user2")
@@ -85,6 +83,8 @@ public class Main {
                 System.out.println(course2);
             }
         }
+        //List all students
+        studentDAO.getAllStudents().forEach(System.out::println);
 
     }
 }
