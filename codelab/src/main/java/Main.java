@@ -15,6 +15,7 @@ public class Main {
                         .build()
         );
 
+        // create course
         CourseDAO courseDAO = new CourseDAO();
         Course course = Course.builder()
                 .courseName("Introduktion til Programmering")
@@ -24,5 +25,11 @@ public class Main {
                 .time("MWF 10:00-11:00")
                 .build();
         courseDAO.createCourse(course);
+
+        // update course
+        course.setTeacher("Dr. Johnson");
+        courseDAO.updateCourse(course);
+
+
     }
 }
