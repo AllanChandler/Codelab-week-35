@@ -1,9 +1,13 @@
+import daos.CourseDAO;
 import daos.PersonDAO;
 import daos.StudentDAO;
+
+import entities.Course;
 import entities.Person;
 import entities.Student;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -48,8 +52,37 @@ public class Main {
                                 .password("password123")
                                 .email("someemail@gmail.com")
                                 .build()
-                );*/
+                );
+        */
 
+        //Delete a student
+        studentDAO.deleteStudent(student);
+
+        // create course
+        CourseDAO courseDAO = new CourseDAO();
+        Course course = Course.builder()
+                .courseName("Introduktion til Programmering")
+                .teacher("Dr. Smith")
+                .semester("Efterår 2024")
+                .classroom("Rum 101")
+                .time("MWF 10:00-11:00")
+                .build();
+        courseDAO.createCourse(course);
+
+        // update course
+        course.setTeacher("Dr. Johnson");
+        courseDAO.updateCourse(course);
+
+        //List all courses
+        List<Course> courses = courseDAO.getAllCourses();
+
+        if (courses.isEmpty()) {
+            System.out.println("No courses found.");
+        } else {
+            for (Course course2 : courses) {
+                System.out.println(course2);
+            }
+        }
         //List all students
         studentDAO.getAllStudents().forEach(System.out::println);
 

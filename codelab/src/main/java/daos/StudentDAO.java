@@ -42,4 +42,12 @@ public class StudentDAO {
             return studentList.stream().collect(Collectors.toSet());
         }
     }
+
+    public void deleteStudent(Student student) {
+        try (EntityManager em = emf.createEntityManager()) {
+            em.getTransaction().begin();
+            em.remove(student);
+            em.getTransaction().commit();
+        }
+    }
 }
