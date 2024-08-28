@@ -24,4 +24,15 @@ public class CourseDAO {
         }
     }
 
+    public void deleteCourse(int id) {
+        try (EntityManager em = emf.createEntityManager()) {
+            em.getTransaction().begin();
+            Course course = em.find(Course.class, id);
+            if (course != null) {
+                em.remove(course);
+            }
+            em.getTransaction().commit();
+        }
+    }
+
 }
